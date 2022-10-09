@@ -135,11 +135,13 @@ cd build-native
 cmake .. -DCMAKE_BUILD_TYPE=RelWithdebInfo -DOPTION_DEDICATED=ON -DOPTION_TOOLS_ONLY=ON
 make
 ```
-The tools should now be compiled for your host machine. Now execute the following commands to compile OpenTTD for your Raspberry Pi while replacing the path to your **Toolchain File**:
+The tools should now be compiled for your host machine. Now execute the following commands to compile OpenTTD for your Raspberry Pi while replacing the paths like before:
 ```
 cd ..
 mkdir build
 cd build
+PATH=<Compiler Directory>/bin:$PATH
+LD_LIBRARY_PATH=<Compiler Directory>/lib:$LD_LIBRARY_PATH
 cmake .. -DCMAKE_BUILD_TYPE=RelWithdebInfo -DOPTION_DEDICATED=ON -DCMAKE_TOOLCHAIN_FILE=<Toolchain File> -DOPTION_TOOLS_ONLY=OFF -DHOST_BINARY_DIR=../build-native
 make
 ```
