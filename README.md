@@ -27,7 +27,7 @@ To get the source files of OpenTTD go to https://www.openttd.org/downloads/opent
 Next get the cross-compiler toolchain from https://sourceforge.net/projects/raspberry-pi-cross-compilers/files/Raspberry%20Pi%20GCC%20Cross-Compiler%20Toolchains/ . Choose the Debian version of the Raspberry OS you want to use on your Raspberry Pi. Refer to https://www.raspberrypi.com/software/operating-systems/ to find out the version name. Next choose the compiler version, normally you want to use the highest/latest. Then select your Raspberry Pi model and download the archive containing the compiler toolchain. Extract the archive to a known location that will be referenced as **Compiler Directory**. All libraries required for the compilation are available in a standard Ubuntu 22.04 installation. If you're using a different distro, please refer to the Raspberry Pi GCC Cross-Compiling instructions for the list of required packages to install.
 
 #### rootfs
-In order to be able to compile for the target OS, you need parts the root file system containing libraries that are used by programs like OpenTTD. Note that Raspberry Pi OS Desktop Bullseye/Debian 11 contains allmost all required libraries for OpenTTD. If you use a different version, make sure to install the required libraries listed in the OpenTTD compiling instructions.
+In order to be able to compile for the target OS, you need parts the root file system containing libraries that are used by programs like OpenTTD. Note that Raspberry Pi OS Desktop Bullseye/Debian 11 contains almost all required libraries for OpenTTD. If you use a different version, make sure to install the required libraries listed in the OpenTTD compiling instructions.
 
 First create a folder named like "rootfs" where you can store these files. It will be referred to as **rootfs Directory**. Now choose one of the methods to acquire the required files:
 
@@ -117,7 +117,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 Place this file at a known location with a name like `PI.make` and rember it as **Toolchain File**.
 
 #### liblzma
-OpenTTD uses the library liblzma for the compression of save games. Unless you never want to save or load a game to/from file, you need this library. Unfortunately, the library binaries provided in the Debian packages for Raspberry Pi OS Bullseye are not usable to compile OpenTTD. Therefore you first need to cross-compile the library from sources. You can download the sources from https://tukaani.org/xz/. Extract the archive and get a terminal in the extracted directory. Next you need to find out the architecture name of the OS, which depends on the Raspberry Pi model. For example, the name for Raspberry OS on Raspberry Pi Model 2/3 is `arm-linux-gnueabihf`. Then execute the following commands one by one while replacing the paths to your **Compiler Directory** and **roofs Directory** and the OS/architecture:
+OpenTTD uses the library liblzma for the compression of save games. Unless you never want to save or load a game to/from file, you need this library. Unfortunately, the library binaries provided in the Debian packages for Raspberry Pi OS Bullseye are not usable to compile OpenTTD. Therefore, you first need to cross-compile the library from sources. You can download the sources from https://tukaani.org/xz/. Extract the archive and get a terminal in the extracted directory. Next you need to find out the architecture name of the OS, which depends on the Raspberry Pi model. For example, the name for Raspberry OS on Raspberry Pi Model 2/3 is `arm-linux-gnueabihf`. Then execute the following commands one by one while replacing the paths to your **Compiler Directory** and **roofs Directory** and the OS/architecture:
 ```
 PATH=<Compiler Directory>/bin:$PATH
 LD_LIBRARY_PATH=<Compiler Directory>/lib:$LD_LIBRARY_PATH
@@ -128,7 +128,7 @@ sudo make install
 The required library files should then be compiled and copied into your **rootfs Directory**.
 
 ### Compiling OpenTTD
-The preparations for this step require much more effort than this actual step, so you're almost finished. Now get a terminal in your **Source Directory**. Because OpenTTD requires it's utilities to be available in the compilation process, you first need to compile them for your host machine. Execute the follwing commands in your **Source Directory**:
+The preparations for this step require much more effort than this actual step, so you're almost finished. Now get a terminal in your **Source Directory**. Because OpenTTD requires it's utilities to be available in the compilation process, you first need to compile them for your host machine. Execute the following commands in your **Source Directory**:
 ```
 mkdir build-native
 cd build-native
@@ -154,4 +154,4 @@ You're done! If you didn't get any errors to this point, OpenTTD should be compi
 - scripts (dir)
 
 ## Disclaimer
-I have build OpenTTD using these commands and tools for a friend for personal use. Therefore I can't garantuee for the operability or completeness of this guide. I also won't provide any personal support nor compile the binaries for all Raspberry Pi models and Raspberry Pi OS combinations. I am nevertheless open for any feedback or helpful tips (e.g. for another model/os combination) that will help others to be included in the guide. Also I am very thankful for the work of the people behind the tools and projects referenced here, because otherwise this would not have been possible.
+I have built OpenTTD using these commands and tools for a friend for personal use. Therefore I can't guarantee for the operability or completeness of this guide. I also won't provide any personal support nor compile the binaries for all Raspberry Pi models and Raspberry Pi OS combinations. I am nevertheless open for any feedback or helpful tips (e.g. for another model/os combination) that will help others to be included in the guide. Also I am very thankful for the work of the people behind the tools and projects referenced here, because otherwise this would not have been possible.
